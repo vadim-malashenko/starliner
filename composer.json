@@ -1,0 +1,23 @@
+{
+    "name": "starliner/train-route",
+    "type": "project",
+    "require": {
+        "php": "7.4.*",
+        "ext-json": "*",
+        "ext-soap": "*",
+        "psr/http-message": "1.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Starliner\\Train\\": "src/"
+        },
+        "classmap": [
+            "src"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    }
+}
