@@ -14,14 +14,23 @@ export default class TrainNumber extends Component{
         </div>
     `
 
-    constructor(getTrains, ... ids) {
-        super(... ids)
+    constructor(train, getTrains) {
+
+        super(train)
+
+        this.onValid = this.onValid.bind(this)
+        this.onInvalid = this.onInvalid.bind(this)
+        this.onload = this.onload.bind(this)
+
+        this.waitAll('valid', this.ids, this.onValid)
+
         this.#getTrains = getTrains
-        const [train] = ids
-        this.#train = Element.factory(Select).byID(train)
+
+        this.#train = new Select(train)
+
+        addEventListener('load', this.onload)
+
         this.#train.disable()
-        addEventListener('travelInfo.valid', this.update.bind(this))
-        addEventListener('travelInfo.invalid', this.clear.bind(this))
     }
 
     async clear(ev) {

@@ -1,6 +1,7 @@
 import Control from '../Control.js'
 
 export default class Select extends Control {
+
     get value() {
         return this.element.value
     }

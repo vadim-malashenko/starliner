@@ -5,9 +5,10 @@ export default class Component extends Event {
     #ids
 
     constructor(... ids) {
+
         super()
+
         this.#ids = ids
-        addEventListener('load', this.onload.bind(this))
     }
 
     get _() {
@@ -44,7 +45,8 @@ export default class Component extends Event {
         this.waitAll('valid', [ev.detail.id], this.onValid)
     }
 
-    async onload(ev) {
-        this.waitAll('load', this.ids, ev => this.emit(`${this._.name}.load`))
+    onload(ev) {
+        //this.waitAll('load', this.ids, ev => this.emit(`${this._.name}.load`))
+        this.emit(`${this._.name}.load`)
     }
 }

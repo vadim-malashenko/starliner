@@ -17,8 +17,8 @@ export default class Datalist extends Element {
         return list
     }
 
-    constructor(element, getList) {
-        super(element)
+    constructor(id, getList) {
+        super(id)
         getList().then(response => {
             if (typeof response.error !== 'undefined') {
                 const errorModal = Element.factory(Modal).byID('error-modal')

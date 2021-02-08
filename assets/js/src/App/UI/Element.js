@@ -5,8 +5,12 @@ export default class Element extends Event {
 
     #element
 
-    constructor(element) {
+    constructor(id) {
+
+        const element = document.getElementById(id)
+
         super(element)
+
         this.#element = element
     }
 

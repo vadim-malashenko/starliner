@@ -1,5 +1,4 @@
 import Component from '../Component.js'
-import Element from '../Element.js'
 import Select from '../Element/Control/Select.js'
 import NumberInput from '../Element/Control/Input/NumberInput.js'
 
@@ -8,23 +7,24 @@ export default class MonthDay extends Component {
     #month
     #day
     
-    constructor(... ids) {
+    constructor(month, day) {
 
-        super(... ids)
+        super(month, day)
 
         this.onValid = this.onValid.bind(this)
         this.onInvalid = this.onInvalid.bind(this)
+        this.onload = this.onload.bind(this)
 
         this.waitAll('valid', this.ids, this.onValid)
 
-        const [month, day] = this.ids
-        this.#month = Element.factory(Select).byID(month)
-        this.#day = Element.factory(NumberInput).byID(day)
+        this.#month = new Select(month)
+        this.#day = new NumberInput(day)
 
         this.#month.on('changed', this.onMonthChange.bind(this))
         this.updateMonth()
         this.onMonthChange()
         this.#day.on('change', this.onDayChange(this))
+        this.onload()
     }
 
     get month() {

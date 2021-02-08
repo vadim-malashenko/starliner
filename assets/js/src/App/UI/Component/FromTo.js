@@ -9,22 +9,24 @@ export default class FromTo extends Component {
     #from
     #to
     
-    constructor(getCities, cities, ... ids) {
+    constructor(from, to, cities, getCities) {
 
-        super(ids)
+        super(from, to)
 
         this.onValid = this.onValid.bind(this)
         this.onInvalid = this.onInvalid.bind(this)
+        this.onload = this.onload.bind(this)
 
         this.waitAll('valid', this.ids, this.onValid)
 
-        const [from, to] = ids
-        const fromTextInput = Element.factory(TextInput).byID(from)
-        const toTextInput = Element.factory(TextInput).byID(to)
-        const citiesDatalist = Element.factory(Datalist, getCities).byID(cities)
+        const fromTextInput = new TextInput(from)
+        const toTextInput = new TextInput(to)
+        const citiesDatalist = new Datalist(cities, getCities)
 
         this.#from = new TextInputDatalist(fromTextInput, citiesDatalist)
         this.#to = new TextInputDatalist(toTextInput, citiesDatalist)
+
+        addEventListener('load', this.onload)
     }
 
     get from() {
